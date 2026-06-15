@@ -1,594 +1,521 @@
+
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="UtilyMe — an AI-powered audit for German Nebenkostenabrechnungen. Susanne Meyer, Neue Fische PM Capstone, 2026.">
-<title>UtilyMe Case Study · Susanne Meyer · Neue Fische PM Capstone</title>
+<meta name="description" content="UtilyMe — an AI audit for German utility bills. Susanne Meyer, Neue Fische PM Capstone, 2026.">
+<title>UtilyMe Case Study · Susanne Meyer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:        #FAFAF7;
-    --bg-alt:    #F2F0EA;
-    --ink:       #1A1A1A;
-    --ink-soft:  #3B3B3B;
-    --muted:     #6B7280;
-    --rule:      #E5E1D6;
-    --navy:      #1F3A5F;
-    --blue:      #4A6FA5;
-    --coral:     #F96167;
-    --green:     #2C7A4D;
-    --amber:     #B45309;
-    --serif:     "Fraunces", Georgia, "Times New Roman", serif;
-    --sans:      "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  :root{
+    --bg:#FAFAF7; --bg-alt:#F2F0EA; --ink:#1A1A1A; --ink-soft:#3B3B3B;
+    --muted:#6B7280; --rule:#E5E1D6;
+    --navy:#1F3A5F; --blue:#4A6FA5; --coral:#F96167; --green:#2C7A4D; --amber:#B45309;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,Helvetica,sans-serif;
   }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--sans); font-size:18px; line-height:1.6; color:var(--ink-soft); background:var(--bg); -webkit-font-smoothing:antialiased;}
+  .container{max-width:760px; margin:0 auto; padding:0 28px;}
+  .wide{max-width:1140px; margin:0 auto; padding:0 28px;}
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: var(--sans);
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    background: var(--bg);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
+  .topbar{padding:22px 28px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); font-weight:500; display:flex; justify-content:space-between; align-items:center; max-width:1140px; margin:0 auto;}
+  .topbar .brand{color:var(--coral); font-weight:700;}
+  .topbar .read-time{color:var(--muted);}
 
-  .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
-  .wide      { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  /* HERO */
+  .hero{padding:60px 0 80px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;}
+  .hero h1{font-family:var(--serif); font-weight:700; font-size:clamp(40px,5.4vw,72px); line-height:1.04; color:var(--navy); margin:0 0 28px; letter-spacing:-0.02em;}
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--coral);}
+  .hero .lede{font-size:clamp(18px,1.8vw,22px); line-height:1.5; color:var(--ink); margin:0; font-weight:400; max-width:560px;}
+  .hero-art{display:flex; justify-content:center;}
+  .hero-art svg{width:100%; max-width:460px; height:auto;}
 
-  /* Topbar */
-  .topbar {
-    border-bottom: 1px solid var(--rule);
-    padding: 22px 28px;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .topbar .brand { color: var(--coral); font-weight: 600; }
+  .credits{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:24px 0; font-size:12px; color:var(--muted); letter-spacing:0.04em; text-transform:uppercase; margin-top:48px;}
+  .credits div{display:flex; flex-direction:column; gap:6px;}
+  .credits strong{color:var(--ink); font-weight:600; font-size:15px; text-transform:none; letter-spacing:0;}
 
-  /* Hero */
-  .hero { padding: 120px 0 70px; }
-  .hero h1 {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: clamp(40px, 7vw, 78px);
-    line-height: 1.05;
-    color: var(--navy);
-    margin: 0 0 28px;
-    letter-spacing: -0.02em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    font-weight: 500;
-    color: var(--coral);
-  }
-  .hero .lede {
-    font-size: clamp(20px, 2.4vw, 24px);
-    line-height: 1.55;
-    color: var(--ink);
-    max-width: 660px;
-    margin: 0 0 60px;
-    font-weight: 400;
-  }
-  .credits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 28px;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 28px 0;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .credits div { display: flex; flex-direction: column; gap: 8px; }
-  .credits strong {
-    color: var(--ink);
-    font-weight: 600;
-    font-size: 16px;
-    text-transform: none;
-    letter-spacing: 0;
-  }
+  /* STATS band */
+  .stats{background:var(--navy); color:white; padding:80px 0; margin:80px 0 0;}
+  .stats h3{font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin:0 0 50px; font-weight:600;}
+  .stats-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:48px;}
+  .stat .num{font-family:var(--serif); font-size:clamp(60px,7vw,92px); font-weight:700; line-height:1; color:var(--coral); margin-bottom:14px; letter-spacing:-0.02em;}
+  .stat .label{font-size:15px; line-height:1.5; color:rgba(255,255,255,0.86); max-width:260px;}
 
-  /* Stats */
-  .stats {
-    background: var(--bg-alt);
-    padding: 90px 0;
-    margin: 80px 0;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 60px;
-  }
-  .stat .num {
-    font-family: var(--serif);
-    font-size: clamp(56px, 7vw, 88px);
-    font-weight: 700;
-    line-height: 1;
-    color: var(--coral);
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-  }
-  .stat .label {
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    max-width: 280px;
-  }
+  /* sections */
+  .kicker{font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--coral); display:block; margin-bottom:18px;}
+  h2{font-family:var(--serif); font-weight:700; font-size:clamp(30px,4vw,46px); line-height:1.1; color:var(--navy); margin:0 0 32px; letter-spacing:-0.01em;}
+  section{padding:80px 0;}
+  section p{margin:0 0 18px;}
 
-  /* Section kicker + h2 */
-  .kicker {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--coral);
-    display: block;
-    margin-bottom: 20px;
-  }
-  h2 {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: clamp(32px, 4.5vw, 52px);
-    line-height: 1.1;
-    color: var(--navy);
-    margin: 0 0 32px;
-    letter-spacing: -0.01em;
-  }
-  h2 em { font-style: italic; font-weight: 500; color: var(--coral); }
-  section { padding: 80px 0; }
-  section p { margin: 0 0 20px; }
+  blockquote{font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(22px,2.4vw,28px); line-height:1.4; color:var(--navy); margin:32px 0 12px; padding:0 0 0 24px; border-left:3px solid var(--coral);}
+  blockquote+cite{display:block; font-style:normal; font-size:13px; color:var(--muted); padding-left:27px; margin-bottom:24px; letter-spacing:0.03em;}
 
-  /* Blockquote */
-  blockquote {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(22px, 2.6vw, 28px);
-    line-height: 1.4;
-    color: var(--navy);
-    margin: 48px 0 16px;
-    padding: 0 0 0 24px;
-    border-left: 3px solid var(--coral);
-  }
-  blockquote + cite {
-    display: block;
-    font-style: normal;
-    font-size: 14px;
-    color: var(--muted);
-    padding-left: 27px;
-    margin-bottom: 32px;
-  }
+  /* CHALLENGE with image */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .split .art{display:flex; justify-content:center;}
+  .split .art svg{width:100%; max-width:420px; height:auto;}
 
   /* Personas */
-  .persona-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 40px;
-    margin-top: 16px;
-  }
-  .persona {
-    padding: 32px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: white;
-  }
-  .persona h3 {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 0 0 4px;
-  }
-  .persona .meta {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 20px;
-  }
-  .persona p { font-size: 16px; line-height: 1.55; margin: 0; }
+  .persona-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px; margin-top:8px;}
+  .persona{padding:0;}
+  .persona .avatar{width:120px; height:120px; margin-bottom:20px;}
+  .persona h3{font-family:var(--serif); font-size:26px; font-weight:700; color:var(--navy); margin:0 0 4px;}
+  .persona .meta{font-size:12px; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; display:block; margin-bottom:14px;}
+  .persona p{font-size:15px; line-height:1.55; margin:0;}
 
-  /* Approach flow blocks */
-  .flow-block {
-    border-top: 1px solid var(--rule);
-    padding: 48px 0;
-  }
-  .flow-block:last-of-type { border-bottom: 1px solid var(--rule); }
-  .flow-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--blue);
-    display: block;
-    margin-bottom: 16px;
-  }
-  .flow-block h3 {
-    font-family: var(--serif);
-    font-size: clamp(26px, 3vw, 34px);
-    font-weight: 600;
-    color: var(--navy);
-    margin: 0 0 16px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .flow-block p { font-size: 18px; margin: 0; max-width: 640px; }
+  /* Approach phone-mockups */
+  .approach-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:8px;}
+  .step{display:flex; flex-direction:column; align-items:center; text-align:center; padding:36px 20px; background:var(--bg-alt); border-radius:8px;}
+  .step .phone{width:140px; height:240px; margin-bottom:24px;}
+  .step .step-label{font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:10px;}
+  .step h3{font-family:var(--serif); font-size:22px; font-weight:600; color:var(--navy); margin:0 0 12px; line-height:1.25;}
+  .step p{font-size:15px; line-height:1.5; margin:0;}
 
-  /* Prototype CTA */
-  .prototype-cta {
-    margin: 64px 0 8px;
-    text-align: center;
-  }
-  .prototype-cta a {
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--coral);
-    text-decoration: none;
-    border-bottom: 2px solid var(--coral);
-    padding-bottom: 4px;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-  .prototype-cta a:hover { color: var(--navy); border-color: var(--navy); }
+  .prototype-cta{margin:56px 0 0; text-align:center;}
+  .prototype-cta a{font-family:var(--serif); font-size:22px; color:white; background:var(--coral); padding:18px 34px; border-radius:4px; text-decoration:none; font-weight:600; display:inline-block; transition:transform 0.2s, background 0.2s;}
+  .prototype-cta a:hover{background:var(--navy); transform:translateY(-2px);}
 
-  /* Callout */
-  .callout {
-    background: var(--navy);
-    color: var(--bg);
-    padding: 80px 0;
-    margin: 40px 0;
-  }
-  .callout h2 { color: white; margin-bottom: 24px; }
-  .callout p {
-    color: rgba(255,255,255,0.86);
-    font-size: 18px;
-    max-width: 660px;
-  }
+  /* Callout band */
+  .callout{background:var(--navy); color:var(--bg); padding:90px 0;}
+  .callout h2{color:white; margin-bottom:20px; max-width:720px;}
+  .callout p{color:rgba(255,255,255,0.88); font-size:18px; max-width:660px; margin:0;}
 
-  /* How it was built — phases */
-  .phases {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 48px;
-    margin-top: 24px;
-  }
-  .phase .num {
-    font-family: var(--serif);
-    font-size: 56px;
-    font-weight: 700;
-    color: var(--coral);
-    line-height: 1;
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-  }
-  .phase h3 {
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 0 0 14px;
-  }
-  .phase p { font-size: 16px; line-height: 1.55; margin: 0; }
+  /* Phases */
+  .phases{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:8px;}
+  .phase .num{font-family:var(--serif); font-size:56px; font-weight:700; color:var(--coral); line-height:1; margin-bottom:12px; letter-spacing:-0.02em;}
+  .phase h3{font-family:var(--serif); font-size:22px; font-weight:700; color:var(--navy); margin:0 0 12px;}
+  .phase p{font-size:15px; line-height:1.55; margin:0;}
 
-  /* KPI grid */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-    margin-top: 24px;
-  }
-  .kpi {
-    padding: 32px;
-    border-radius: 4px;
-    background: var(--bg-alt);
-    border-top: 4px solid var(--coral);
-  }
-  .kpi h3 {
-    font-family: var(--serif);
-    font-size: 21px;
-    font-weight: 600;
-    color: var(--navy);
-    margin: 0 0 16px;
-    line-height: 1.25;
-  }
-  .kpi .target {
-    font-family: var(--serif);
-    font-size: 44px;
-    font-weight: 700;
-    color: var(--coral);
-    line-height: 1;
-    margin-bottom: 18px;
-    letter-spacing: -0.02em;
-  }
-  .kpi p { font-size: 15px; line-height: 1.55; margin: 0; color: var(--ink-soft); }
+  /* KPIs */
+  .kpis-band{background:var(--bg-alt); padding:90px 0;}
+  .kpi-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px;}
+  .kpi{padding:28px; background:white; border-radius:6px;}
+  .kpi .icon{width:36px; height:36px; margin-bottom:14px; color:var(--coral);}
+  .kpi h3{font-family:var(--serif); font-size:17px; font-weight:600; color:var(--navy); margin:0 0 8px; line-height:1.3;}
+  .kpi .target{font-family:var(--serif); font-size:34px; font-weight:700; color:var(--coral); line-height:1; margin-bottom:12px; letter-spacing:-0.02em;}
+  .kpi p{font-size:13px; line-height:1.5; margin:0; color:var(--ink-soft);}
 
-  /* What I learned */
-  .learned p { font-size: 19px; margin-bottom: 28px; }
+  /* Learned */
+  .learned p{font-size:18px; margin-bottom:22px;}
+  .learned h2 em{font-style:italic; font-weight:500; color:var(--coral);}
 
   /* Closing */
-  .closing {
-    padding: 140px 0;
-    text-align: center;
-  }
-  .closing h2 {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 600;
-    font-size: clamp(36px, 5vw, 58px);
-    color: var(--navy);
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
-  .closing .caption {
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  .closing{padding:130px 0; text-align:center;}
+  .closing h2{font-style:italic; font-weight:600; font-size:clamp(34px,4.5vw,52px); margin-bottom:18px;}
+  .closing .caption{font-size:13px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;}
 
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 40px 28px 60px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-  footer a {
-    color: var(--coral);
-    text-decoration: none;
-    border-bottom: 1px solid var(--coral);
-    padding-bottom: 1px;
-  }
-  footer a:hover { color: var(--navy); border-color: var(--navy); }
+  footer{border-top:1px solid var(--rule); padding:40px 28px 60px; text-align:center; font-size:13px; color:var(--muted); letter-spacing:0.03em;}
+  footer a{color:var(--coral); text-decoration:none; border-bottom:1px solid var(--coral);}
+  footer a:hover{color:var(--navy); border-color:var(--navy);}
 
-  /* Mobile tweaks */
-  @media (max-width: 640px) {
-    .hero { padding: 70px 0 50px; }
-    section { padding: 60px 0; }
-    .stats { padding: 60px 0; margin: 50px 0; }
-    blockquote { font-size: 21px; }
-    .callout { padding: 60px 0; }
+  @media (max-width:780px){
+    .hero{padding:30px 0 50px;}
+    .hero-grid{grid-template-columns:1fr; gap:36px;}
+    .hero-art{order:-1;}
+    .hero-art svg{max-width:300px;}
+    .split{grid-template-columns:1fr; gap:36px;}
+    .approach-grid{grid-template-columns:1fr; gap:20px;}
+    .phases{grid-template-columns:1fr; gap:32px;}
+    section{padding:60px 0;}
+    .stats{padding:60px 0;}
+    .kpis-band{padding:60px 0;}
+    .callout{padding:60px 0;}
   }
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <span class="brand">Case Study</span> &nbsp;·&nbsp; Neue Fische PM Capstone &nbsp;·&nbsp; 2026
+  <span><span class="brand">Case Study</span> &middot; Neue Fische PM Capstone &middot; 2026</span>
+  <span class="read-time">3&#8209;minute read</span>
 </div>
 
-<!-- ==================================================== -->
-<!-- HERO                                                  -->
-<!-- ==================================================== -->
+<!-- ============================ HERO ============================ -->
 <section class="hero container">
-  <h1>60 seconds. Your phone. <em>Verify, don&rsquo;t pay&#8209;and&#8209;hope.</em></h1>
-  <p class="lede">
-    UtilyMe is a mobile-first AI service that audits your annual German utility bill in under 60 seconds &mdash; so you can know whether you&rsquo;ve been overcharged before you pay.
-  </p>
+  <div class="hero-grid">
+    <div>
+      <h1>60 seconds. Your phone. <em>Verify, don&rsquo;t pay&#8209;and&#8209;hope.</em></h1>
+      <p class="lede">An AI audit for German utility bills &mdash; on the U-Bahn, before you pay.</p>
+    </div>
+    <div class="hero-art">
+      <!-- Hero illustration: phone showing verdict, with floating bill -->
+      <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-label="Phone showing a utility bill audit verdict">
+        <!-- background circle -->
+        <circle cx="230" cy="230" r="200" fill="#FEF7F7"/>
+        <circle cx="230" cy="230" r="160" fill="#FECACA" opacity="0.45"/>
+
+        <!-- floating paper bill -->
+        <g transform="translate(40 80) rotate(-12 90 110)">
+          <rect x="0" y="0" width="180" height="220" rx="6" fill="#FFFFFF" stroke="#E5E1D6" stroke-width="1.5"/>
+          <rect x="16" y="20" width="100" height="10" fill="#1F3A5F"/>
+          <rect x="16" y="42" width="80" height="6" fill="#9CA3AF"/>
+          <line x1="16" y1="70" x2="164" y2="70" stroke="#E5E1D6" stroke-width="1"/>
+          <rect x="16" y="84"  width="100" height="6" fill="#3B3B3B"/>
+          <rect x="120" y="84"  width="40"  height="6" fill="#3B3B3B"/>
+          <rect x="16" y="100" width="120" height="6" fill="#9CA3AF"/>
+          <rect x="120" y="100" width="40" height="6" fill="#9CA3AF"/>
+          <rect x="16" y="116" width="90" height="6" fill="#9CA3AF"/>
+          <rect x="120" y="116" width="40" height="6" fill="#9CA3AF"/>
+          <rect x="16" y="132" width="110" height="6" fill="#9CA3AF"/>
+          <rect x="120" y="132" width="40" height="6" fill="#9CA3AF"/>
+          <line x1="16" y1="158" x2="164" y2="158" stroke="#E5E1D6" stroke-width="1"/>
+          <rect x="16" y="174" width="50" height="10" fill="#1F3A5F"/>
+          <rect x="110" y="170" width="50" height="14" fill="#F96167"/>
+        </g>
+
+        <!-- phone in foreground -->
+        <g transform="translate(200 80)">
+          <rect x="0" y="0" width="200" height="340" rx="24" fill="#1F3A5F"/>
+          <rect x="8" y="10" width="184" height="320" rx="18" fill="#FFFFFF"/>
+          <!-- status bar -->
+          <rect x="20" y="22" width="30" height="4" fill="#9CA3AF" rx="2"/>
+          <circle cx="100" cy="24" r="3" fill="#1F3A5F"/>
+          <!-- header -->
+          <text x="100" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1F3A5F" letter-spacing="0.1em">UTILYME</text>
+          <line x1="20" y1="72" x2="180" y2="72" stroke="#E5E1D6"/>
+          <!-- verdict check -->
+          <circle cx="100" cy="130" r="38" fill="#D1FAE5"/>
+          <path d="M84 130 l12 12 l24 -26" stroke="#2C7A4D" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- verdict text -->
+          <text x="100" y="195" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="16" font-weight="700" fill="#1F3A5F">Possible refund</text>
+          <text x="100" y="225" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="28" font-weight="700" fill="#F96167">&euro;342</text>
+          <!-- detail rows -->
+          <rect x="24" y="248" width="152" height="8" fill="#F2F0EA" rx="2"/>
+          <rect x="24" y="264" width="120" height="8" fill="#F2F0EA" rx="2"/>
+          <rect x="24" y="280" width="140" height="8" fill="#F2F0EA" rx="2"/>
+          <!-- CTA pill -->
+          <rect x="40" y="300" width="120" height="20" rx="10" fill="#1F3A5F"/>
+          <text x="100" y="314" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">See the math</text>
+        </g>
+
+        <!-- floating sparkles -->
+        <circle cx="380" cy="120" r="6" fill="#F96167"/>
+        <circle cx="60" cy="340" r="5" fill="#F96167"/>
+        <circle cx="395" cy="335" r="4" fill="#1F3A5F"/>
+      </svg>
+    </div>
+  </div>
+
   <div class="credits">
     <div><span>Product Manager</span><strong>Susanne Meyer</strong></div>
     <div><span>Product</span><strong>UtilyMe AI</strong></div>
     <div><span>Platform</span><strong>Mobile-first web</strong></div>
-    <div><span>Category</span><strong>Tenant tools · Germany</strong></div>
+    <div><span>Category</span><strong>Tenant tools &middot; Germany</strong></div>
   </div>
 </section>
 
-<!-- ==================================================== -->
-<!-- BIG STATS                                             -->
-<!-- ==================================================== -->
+<!-- ============================ STATS ============================ -->
 <section class="stats">
-  <div class="wide stats-grid">
-    <div class="stat">
-      <div class="num">50%</div>
-      <div class="label">of German Nebenkostenabrechnungen contain at least one error (Mieterbund estimate)</div>
-    </div>
-    <div class="stat">
-      <div class="num">&euro;300+</div>
-      <div class="label">average annual overpayment per affected household</div>
-    </div>
-    <div class="stat">
-      <div class="num">76%</div>
-      <div class="label">of survey respondents (n=38) had never systematically checked their utility bill</div>
+  <div class="wide">
+    <h3>The opportunity, in numbers</h3>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">50%</div>
+        <div class="label">of German utility bills contain at least one error</div>
+      </div>
+      <div class="stat">
+        <div class="num">&euro;300+</div>
+        <div class="label">average annual overpayment per affected household</div>
+      </div>
+      <div class="stat">
+        <div class="num">76%</div>
+        <div class="label">of surveyed tenants have never checked their bill</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ==================================================== -->
-<!-- CHALLENGE                                             -->
-<!-- ==================================================== -->
+<!-- ============================ CHALLENGE ============================ -->
 <section class="container">
-  <span class="kicker">The challenge</span>
-  <h2>You suspect the bill is wrong. You don&rsquo;t have a week to find out.</h2>
-  <p>
-    Verifying a Nebenkostenabrechnung in Germany today takes a Mieterbund consultation, an appointment with a lawyer, or hours alone with a spreadsheet and the BetrKV. For most tenants none of those happen. The bill gets paid, the suspicion lingers, the year ends.
-  </p>
-  <p>
-    Research conducted in early 2026 &mdash; three qualitative interviews in Berlin and a survey of 38 German renters &mdash; made the gap visible. Tenants are engaged and informed; they suspect something is off. But the cost of verifying is so high that paying-and-hoping is the rational choice.
-  </p>
-
-  <blockquote>&ldquo;I always feel like something is off, but I have neither the time nor the legal knowledge to actually check.&rdquo;</blockquote>
-  <cite>Anna, 32 &middot; Marketing manager, Berlin &middot; Interview 2, 2026</cite>
+  <div class="split">
+    <div>
+      <span class="kicker">The challenge</span>
+      <h2>You suspect the bill is wrong. You don&rsquo;t have a week to find out.</h2>
+      <p>Verifying a German utility bill today means a Mieterbund consultation, a lawyer, or hours with a spreadsheet. For most tenants, none of those happen.</p>
+      <blockquote>&ldquo;I always feel like something is off, but I have neither the time nor the legal knowledge to actually check.&rdquo;</blockquote>
+      <cite>Anna, 32 &middot; Berlin &middot; Interview 2</cite>
+    </div>
+    <div class="art">
+      <!-- Stack of overwhelming paperwork -->
+      <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" aria-label="Stack of paperwork representing the bill verification burden">
+        <!-- shadow -->
+        <ellipse cx="210" cy="360" rx="160" ry="10" fill="#1F3A5F" opacity="0.08"/>
+        <!-- paper 4 -->
+        <g transform="translate(60 60) rotate(-8 130 140)">
+          <rect width="240" height="280" rx="6" fill="#F2F0EA"/>
+          <rect x="20" y="28" width="80" height="6" fill="#9CA3AF"/>
+          <rect x="20" y="44" width="160" height="4" fill="#9CA3AF" opacity="0.5"/>
+        </g>
+        <!-- paper 3 -->
+        <g transform="translate(80 50) rotate(4 130 140)">
+          <rect width="240" height="280" rx="6" fill="#FFFFFF" stroke="#E5E1D6"/>
+          <rect x="20" y="28" width="120" height="6" fill="#9CA3AF"/>
+          <rect x="20" y="44" width="180" height="4" fill="#9CA3AF" opacity="0.5"/>
+        </g>
+        <!-- paper 2 - main -->
+        <g transform="translate(90 40)">
+          <rect width="240" height="290" rx="6" fill="#FFFFFF" stroke="#E5E1D6"/>
+          <rect x="20" y="24" width="140" height="12" fill="#1F3A5F"/>
+          <rect x="20" y="48" width="110" height="6" fill="#9CA3AF"/>
+          <line x1="20" y1="74" x2="220" y2="74" stroke="#E5E1D6"/>
+          <rect x="20" y="92"  width="120" height="6" fill="#3B3B3B"/>
+          <rect x="170" y="92"  width="50"  height="6" fill="#3B3B3B"/>
+          <rect x="20" y="108" width="140" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="170" y="108" width="50" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="20" y="124" width="100" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="170" y="124" width="50" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="20" y="140" width="120" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="170" y="140" width="50" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="20" y="156" width="80"  height="6" fill="#9CA3AF" opacity="0.7"/>
+          <rect x="170" y="156" width="50" height="6" fill="#9CA3AF" opacity="0.7"/>
+          <line x1="20" y1="180" x2="220" y2="180" stroke="#E5E1D6"/>
+          <rect x="20" y="200" width="60" height="10" fill="#1F3A5F"/>
+          <rect x="160" y="196" width="60" height="14" fill="#F96167"/>
+          <!-- question mark over it -->
+        </g>
+        <!-- big question mark -->
+        <circle cx="320" cy="100" r="34" fill="#F96167"/>
+        <text x="320" y="116" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="40" font-weight="700" fill="white">?</text>
+      </svg>
+    </div>
+  </div>
 </section>
 
-<!-- ==================================================== -->
-<!-- PERSONAS                                              -->
-<!-- ==================================================== -->
+<!-- ============================ PERSONAS ============================ -->
 <section class="container">
   <span class="kicker">Who we designed for</span>
   <h2>Three people. One shared friction.</h2>
   <div class="persona-grid">
     <div class="persona">
+      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Anna avatar">
+        <circle cx="60" cy="60" r="60" fill="#FECACA"/>
+        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
+        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
+        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <!-- phone in hand hint -->
+        <rect x="84" y="76" width="14" height="22" rx="3" fill="#1F3A5F"/>
+      </svg>
       <h3>Anna</h3>
-      <span class="meta">Marketing manager &middot; 32 &middot; Berlin</span>
-      <p>Native German speaker, mobile-first, time-poor. Suspects her bill is wrong but won&rsquo;t take a half-day off to visit Mieterbund. Lives on her phone &mdash; the audit has to happen on a 15-minute U-Bahn ride or it does not happen at all.</p>
+      <span class="meta">32 &middot; Berlin &middot; Marketing</span>
+      <p>Mobile-first, time-poor. Audits her bill on the U-Bahn or not at all.</p>
     </div>
     <div class="persona">
+      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Markus avatar">
+        <circle cx="60" cy="60" r="60" fill="#FEF3C7"/>
+        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
+        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
+        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <!-- glasses -->
+        <circle cx="52" cy="50" r="5" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <circle cx="68" cy="50" r="5" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <line x1="57" y1="50" x2="63" y2="50" stroke="#1F3A5F" stroke-width="2"/>
+      </svg>
       <h3>Markus</h3>
-      <span class="meta">IT consultant &middot; 58 &middot; Hannover</span>
-      <p>Long-term tenant, Mieterbund member, methodical. Wants the calculation, not just the verdict. Will use his phone but expects desktop-quality detail. Tests UtilyMe against his own spreadsheet.</p>
+      <span class="meta">58 &middot; Hannover &middot; IT consultant</span>
+      <p>Methodical. Wants the calculation, not just the verdict. Will check the math.</p>
     </div>
     <div class="persona">
+      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Priya avatar">
+        <circle cx="60" cy="60" r="60" fill="#D1FAE5"/>
+        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
+        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
+        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
+        <!-- earrings -->
+        <circle cx="40" cy="56" r="2" fill="#F96167"/>
+        <circle cx="80" cy="56" r="2" fill="#F96167"/>
+      </svg>
       <h3>Priya</h3>
-      <span class="meta">Software engineer &middot; 28 &middot; Munich</span>
-      <p>Expat, English working language. Loses confidence the moment a document is in German legalese. Needs UtilyMe to bridge the language gap, not just the legal one. Will recommend it to her entire expat network if it earns her trust once.</p>
+      <span class="meta">28 &middot; Munich &middot; Engineer</span>
+      <p>Expat. English working language. Needs UtilyMe to bridge the German legalese.</p>
     </div>
   </div>
 </section>
 
-<!-- ==================================================== -->
-<!-- APPROACH                                              -->
-<!-- ==================================================== -->
-<section class="container">
-  <span class="kicker">The approach</span>
-  <h2>Separate the expertise from the urgency.</h2>
-  <p>
-    The expertise &mdash; BetrKV interpretation, mathematical apportionment, error-pattern recognition &mdash; lives in the system. The user supplies one thing: their bill. Everything else happens in under ninety seconds.
-  </p>
-
-  <div class="flow-block">
-    <span class="flow-label">Upload &middot; the first 30 seconds</span>
-    <h3>The first thirty seconds belong to the user.</h3>
-    <p>Anna takes a photo of her bill or uploads a PDF. The interface asks for nothing else. No account, no email, no questions about her landlord. The friction has to be near zero or the tab closes.</p>
-  </div>
-
-  <div class="flow-block">
-    <span class="flow-label">Audit &middot; the hybrid stack</span>
-    <h3>An LLM extracts. Deterministic math audits.</h3>
-    <p>A language model parses the document and pulls out the structured data &mdash; square metres, apportionment keys, individual line items, prior payments. A separate deterministic engine &mdash; not the LLM &mdash; runs the arithmetic. The LLM is the parser; the math is the auditor. This split is the trust architecture, and it is the most important architectural decision in the project.</p>
-  </div>
-
-  <div class="flow-block">
-    <span class="flow-label">Verdict &middot; the trust artefact</span>
-    <h3>The math IS the trust artefact.</h3>
-    <p>The verdict is never &ldquo;trust me, this looks wrong.&rdquo; It is &ldquo;here is what your bill says, here is what the math returns, and here is the line that does not reconcile.&rdquo; Every figure is auditable. Every figure links to the source paragraph in the BetrKV. Users are encouraged to open the calculation detail view &mdash; we measure that.</p>
-  </div>
-
-  <div class="prototype-cta">
-    <a href="https://sketch-spark-weave.lovable.app/" target="_blank" rel="noopener">Try the prototype &rarr;</a>
-  </div>
-</section>
-
-<!-- ==================================================== -->
-<!-- TRUST CALLOUT                                         -->
-<!-- ==================================================== -->
-<section class="callout">
-  <div class="container">
-    <span class="kicker" style="color: rgba(255,255,255,0.7);">The non-negotiable</span>
-    <h2>UtilyMe is a tool, not a lawyer.</h2>
-    <p>
-      Every verdict carries a BetrKV disclaimer reviewed by external counsel. The product helps a tenant decide whether to investigate further &mdash; it does not replace Mieterbund consultation, and it does not generate legal advice. This positioning is embedded in the Definition of Done, the Go/No-Go gates, and every line of public copy. It is not a process step. It is a product value.
-    </p>
-  </div>
-</section>
-
-<!-- ==================================================== -->
-<!-- HOW IT WAS BUILT                                      -->
-<!-- ==================================================== -->
+<!-- ============================ APPROACH ============================ -->
 <section class="wide">
   <div class="container">
-    <span class="kicker">How it was built</span>
-    <h2>From a problem statement to a launch-ready plan in 14 weeks.</h2>
-  </div>
-  <div class="container">
-    <div class="phases">
-      <div class="phase">
-        <div class="num">01</div>
-        <h3>Discover</h3>
-        <p>Three qualitative interviews, a 38-person survey, competitive analysis (Mieterbund, lawyers, DIY). Eight hypotheses written before the data was looked at. Every later scope decision traces back to this evidence.</p>
-      </div>
-      <div class="phase">
-        <div class="num">02</div>
-        <h3>Define</h3>
-        <p>Three personas, full user journey, user flow, 8 epics and 26 user stories with Given/When/Then acceptance criteria, Scrum framework with DoR/DoD, story-point estimation, lean PRD, RICE prioritisation, Now-Next-Later roadmap (iterated through three versions).</p>
-      </div>
-      <div class="phase">
-        <div class="num">03</div>
-        <h3>Design, specify, ship-ready</h3>
-        <p>Lovable prototype iterated through three rounds of usability testing, five KPIs with full specification (formulas, owners, cadence), Performance &amp; Experimentation Framework, twelve-week release plan with Go/No-Go gates, and a ninety-day post-launch plan. Twenty-eight deliverables in total.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================================================== -->
-<!-- KPIs                                                  -->
-<!-- ==================================================== -->
-<section class="wide">
-  <div class="container">
-    <span class="kicker">Measuring what matters</span>
-    <h2>Five KPIs. Each one tied to a moment that matters.</h2>
+    <span class="kicker">The approach</span>
+    <h2>Three steps. Ninety seconds.</h2>
   </div>
   <div class="wide">
+    <div class="approach-grid">
+      <!-- Step 1 — Upload -->
+      <div class="step">
+        <svg class="phone" viewBox="0 0 140 240" xmlns="http://www.w3.org/2000/svg" aria-label="Upload screen mockup">
+          <rect x="0" y="0" width="140" height="240" rx="20" fill="#1F3A5F"/>
+          <rect x="6" y="8" width="128" height="224" rx="14" fill="#FFFFFF"/>
+          <text x="70" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#1F3A5F" letter-spacing="0.1em">UTILYME</text>
+          <line x1="18" y1="40" x2="122" y2="40" stroke="#E5E1D6"/>
+          <!-- upload box -->
+          <rect x="18" y="60" width="104" height="100" rx="6" fill="#F2F0EA" stroke="#F96167" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <!-- upload icon -->
+          <path d="M70 90 l0 32 M58 102 l12 -12 l12 12" fill="none" stroke="#F96167" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="70" y="138" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#1F3A5F">Drop bill here</text>
+          <text x="70" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="#6B7280">PDF or photo</text>
+          <!-- CTA -->
+          <rect x="30" y="180" width="80" height="20" rx="10" fill="#F96167"/>
+          <text x="70" y="194" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#FFFFFF">Upload</text>
+        </svg>
+        <span class="step-label">Step 1 &middot; Upload</span>
+        <h3>Photo or PDF.</h3>
+        <p>No account. No email. Just the bill.</p>
+      </div>
+
+      <!-- Step 2 — Audit -->
+      <div class="step">
+        <svg class="phone" viewBox="0 0 140 240" xmlns="http://www.w3.org/2000/svg" aria-label="Audit in progress screen mockup">
+          <rect x="0" y="0" width="140" height="240" rx="20" fill="#1F3A5F"/>
+          <rect x="6" y="8" width="128" height="224" rx="14" fill="#FFFFFF"/>
+          <text x="70" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#1F3A5F" letter-spacing="0.1em">AUDITING&hellip;</text>
+          <line x1="18" y1="40" x2="122" y2="40" stroke="#E5E1D6"/>
+          <!-- circular spinner -->
+          <circle cx="70" cy="100" r="30" fill="none" stroke="#F2F0EA" stroke-width="6"/>
+          <path d="M70 70 a30 30 0 0 1 30 30" fill="none" stroke="#F96167" stroke-width="6" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 70 100" to="360 70 100" dur="1.2s" repeatCount="indefinite"/>
+          </path>
+          <text x="70" y="104" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="12" font-weight="700" fill="#1F3A5F">47s</text>
+          <!-- progress lines -->
+          <rect x="22" y="160" width="96" height="6" rx="3" fill="#D1FAE5"/>
+          <text x="22" y="178" font-family="Inter,sans-serif" font-size="6" fill="#2C7A4D">&check; Bill parsed</text>
+          <rect x="22" y="186" width="60" height="6" rx="3" fill="#FEF3C7"/>
+          <text x="22" y="204" font-family="Inter,sans-serif" font-size="6" fill="#B45309">&middot; Checking math</text>
+        </svg>
+        <span class="step-label">Step 2 &middot; Audit</span>
+        <h3>The LLM parses. The math audits.</h3>
+        <p>Splitting language and arithmetic is the trust architecture.</p>
+      </div>
+
+      <!-- Step 3 — Verdict -->
+      <div class="step">
+        <svg class="phone" viewBox="0 0 140 240" xmlns="http://www.w3.org/2000/svg" aria-label="Verdict screen mockup">
+          <rect x="0" y="0" width="140" height="240" rx="20" fill="#1F3A5F"/>
+          <rect x="6" y="8" width="128" height="224" rx="14" fill="#FFFFFF"/>
+          <text x="70" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#1F3A5F" letter-spacing="0.1em">VERDICT</text>
+          <line x1="18" y1="40" x2="122" y2="40" stroke="#E5E1D6"/>
+          <!-- check -->
+          <circle cx="70" cy="80" r="22" fill="#D1FAE5"/>
+          <path d="M58 80 l8 8 l16 -18" stroke="#2C7A4D" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="70" y="124" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="10" font-weight="700" fill="#1F3A5F">Possible refund</text>
+          <text x="70" y="150" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="22" font-weight="700" fill="#F96167">&euro;342</text>
+          <!-- detail rows -->
+          <line x1="22" y1="166" x2="118" y2="166" stroke="#E5E1D6"/>
+          <text x="22" y="180" font-family="Inter,sans-serif" font-size="6" fill="#3B3B3B">Heating apportion.</text>
+          <text x="118" y="180" text-anchor="end" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#F96167">&minus;&euro;218</text>
+          <text x="22" y="194" font-family="Inter,sans-serif" font-size="6" fill="#3B3B3B">Sq. metre key</text>
+          <text x="118" y="194" text-anchor="end" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#F96167">&minus;&euro;124</text>
+          <rect x="22" y="206" width="96" height="18" rx="9" fill="#1F3A5F"/>
+          <text x="70" y="218" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">See the math</text>
+        </svg>
+        <span class="step-label">Step 3 &middot; Verdict</span>
+        <h3>Every figure auditable.</h3>
+        <p>The math IS the trust artefact &mdash; never &ldquo;trust me.&rdquo;</p>
+      </div>
+    </div>
+
+    <div class="prototype-cta">
+      <a href="https://sketch-spark-weave.lovable.app/" target="_blank" rel="noopener">Try the live prototype &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRUST CALLOUT ============================ -->
+<section class="callout">
+  <div class="container">
+    <span class="kicker" style="color:rgba(255,255,255,0.7);">The non-negotiable</span>
+    <h2>UtilyMe is a tool, not a lawyer.</h2>
+    <p>Every verdict carries a BetrKV disclaimer reviewed by external counsel. The product helps a tenant decide whether to investigate further &mdash; it does not replace Mieterbund. This is embedded in the Definition of Done, the Go/No-Go gates, and every line of public copy.</p>
+  </div>
+</section>
+
+<!-- ============================ HOW IT WAS BUILT ============================ -->
+<section class="container">
+  <span class="kicker">How it was built</span>
+  <h2>Problem statement to launch-ready in 14 weeks.</h2>
+  <div class="phases">
+    <div class="phase">
+      <div class="num">01</div>
+      <h3>Discover</h3>
+      <p>3 qualitative interviews, 38-person survey, 8 hypotheses, competitive analysis.</p>
+    </div>
+    <div class="phase">
+      <div class="num">02</div>
+      <h3>Define</h3>
+      <p>3 personas, journey, 8 epics, 26 stories, Scrum framework, PRD, RICE-prioritised roadmap.</p>
+    </div>
+    <div class="phase">
+      <div class="num">03</div>
+      <h3>Ship-ready</h3>
+      <p>Lovable prototype + 3 usability rounds, 5 KPIs, 12-week release plan, 90-day post-launch plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ KPIs ============================ -->
+<section class="kpis-band">
+  <div class="container">
+    <span class="kicker">Measuring what matters</span>
+    <h2>Five KPIs. Five moments that matter.</h2>
+  </div>
+  <div class="wide" style="margin-top:32px;">
     <div class="kpi-grid">
       <div class="kpi">
-        <h3>Audit Completion Rate</h3>
-        <div class="target">&ge; 60%</div>
-        <p>If users start an upload and abandon before the verdict, the entire trust thesis breaks. This is the headline KPI of O1 &mdash; verify, not pay&#8209;and&#8209;hope.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        <h3>Audit Completion</h3>
+        <div class="target">&ge;&nbsp;60%</div>
+        <p>Headline KPI of O1 &mdash; verify, not pay-and-hope.</p>
       </div>
       <div class="kpi">
-        <h3>Median Time to Verdict</h3>
-        <div class="target">&lt; 90s</div>
-        <p>The product promise is &ldquo;in sixty seconds, on your phone.&rdquo; Every second above 90 is a second Anna&rsquo;s attention is somewhere else.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>Time to Verdict</h3>
+        <div class="target">&lt;&nbsp;90s</div>
+        <p>The 60-second product promise.</p>
       </div>
       <div class="kpi">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
         <h3>Trust Channel Acquisition</h3>
-        <div class="target">&ge; 40%</div>
-        <p>Mieterbund + Verbraucherzentrale + Stiftung Warentest. Trust is the moat, and it has to come through trusted channels first.</p>
+        <div class="target">&ge;&nbsp;40%</div>
+        <p>Mieterbund, Verbraucherzentrale, Stiftung Warentest.</p>
       </div>
       <div class="kpi">
-        <h3>Calculation Detail Open Rate</h3>
-        <div class="target">&ge; 70%</div>
-        <p>If users do not open the math, they are not really trusting the verdict. This is the leading indicator that the trust artefact is working.</p>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+        <h3>Calculation Detail Open</h3>
+        <div class="target">&ge;&nbsp;70%</div>
+        <p>Leading indicator that the math is trusted.</p>
       </div>
       <div class="kpi">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
         <h3>Post-Audit Trust Score</h3>
-        <div class="target">&ge; 4.0/5</div>
-        <p>The lagging indicator. Users tell us directly whether they would act on the result. Floor: 3.5. Below that, the strategy is at risk.</p>
+        <div class="target">&ge;&nbsp;4.0</div>
+        <p>Users tell us, directly, whether they would act.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================================================== -->
-<!-- WHAT I LEARNED                                        -->
-<!-- ==================================================== -->
+<!-- ============================ WHAT I LEARNED ============================ -->
 <section class="container learned">
   <span class="kicker">What I learned</span>
   <h2>Trust is built by what you choose <em>not</em> to do.</h2>
-  <p>
-    The hardest decisions in the project were what to leave out. The team had clear capacity for a dispute-letter generator, a recurring annual reminder, a paid premium tier. Each one tested well in concept. Each one was deferred. Trust at MVP comes from doing one thing &mdash; the audit &mdash; exceptionally well, transparently, in sixty seconds.
-  </p>
-  <p>
-    The math is not a feature. It is the product. The single most important decision in the architecture was splitting the LLM and the deterministic arithmetic. The LLM extracts; the math audits. Users can verify every number against their own bill. That separation makes the verdict defensible, and a defensible verdict is the only verdict worth shipping in this category.
-  </p>
-  <p>
-    User research is not a discovery activity. It is the spine. Every prioritisation conversation came back to what Anna, Markus and Priya told us. Without their interviews, the team would have built a thorough product. With them, it built a useful one.
-  </p>
+  <p>The hardest decisions were what to leave out. A dispute-letter generator, a recurring reminder, a premium tier &mdash; each tested well, each was deferred. Trust at MVP comes from doing one thing well.</p>
+  <p>Splitting the LLM and the deterministic math was the single most important architectural call. The LLM extracts; the math audits. A defensible verdict is the only verdict worth shipping.</p>
+  <p>User research is the spine, not the discovery activity. Every prioritisation conversation came back to what Anna, Markus and Priya said.</p>
 </section>
 
-<!-- ==================================================== -->
-<!-- CLOSING                                               -->
-<!-- ==================================================== -->
+<!-- ============================ CLOSING ============================ -->
 <section class="closing container">
   <h2>&ldquo;You suspected. Now you know.&rdquo;</h2>
   <div class="caption">UtilyMe &middot; the line on the verdict screen</div>
 </section>
 
-<!-- ==================================================== -->
-<!-- FOOTER                                                -->
-<!-- ==================================================== -->
 <footer>
   UtilyMe &middot; PM Capstone &middot; Susanne Meyer &middot; June 2026 &middot; Neue Fische Product Management Program<br>
   <a href="https://sketch-spark-weave.lovable.app/" target="_blank" rel="noopener">Live prototype</a>
