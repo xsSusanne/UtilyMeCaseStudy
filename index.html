@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UtilyMe — an AI-powered audit for German Nebenkostenabrechnungen. Susanne Meyer, Neue Fische PM Capstone, 2026.">
+<title>UtilyMe Case Study · Susanne Meyer · Neue Fische PM Capstone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #FAFAF7;
+    --bg-alt:    #F2F0EA;
+    --ink:       #1A1A1A;
+    --ink-soft:  #3B3B3B;
+    --muted:     #6B7280;
+    --rule:      #E5E1D6;
+    --navy:      #1F3A5F;
+    --blue:      #4A6FA5;
+    --coral:     #F96167;
+    --green:     #2C7A4D;
+    --amber:     #B45309;
+    --serif:     "Fraunces", Georgia, "Times New Roman", serif;
+    --sans:      "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  .wide      { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* Topbar */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 28px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .topbar .brand { color: var(--coral); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 120px 0 70px; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 78px);
+    line-height: 1.05;
+    color: var(--navy);
+    margin: 0 0 28px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--coral);
+  }
+  .hero .lede {
+    font-size: clamp(20px, 2.4vw, 24px);
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 660px;
+    margin: 0 0 60px;
+    font-weight: 400;
+  }
+  .credits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 28px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .credits div { display: flex; flex-direction: column; gap: 8px; }
+  .credits strong {
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* Stats */
+  .stats {
+    background: var(--bg-alt);
+    padding: 90px 0;
+    margin: 80px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+  }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: clamp(56px, 7vw, 88px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--coral);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .stat .label {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 280px;
+  }
+
+  /* Section kicker + h2 */
+  .kicker {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    display: block;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.1;
+    color: var(--navy);
+    margin: 0 0 32px;
+    letter-spacing: -0.01em;
+  }
+  h2 em { font-style: italic; font-weight: 500; color: var(--coral); }
+  section { padding: 80px 0; }
+  section p { margin: 0 0 20px; }
+
+  /* Blockquote */
+  blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.4;
+    color: var(--navy);
+    margin: 48px 0 16px;
+    padding: 0 0 0 24px;
+    border-left: 3px solid var(--coral);
+  }
+  blockquote + cite {
+    display: block;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 27px;
+    margin-bottom: 32px;
+  }
+
+  /* Personas */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    margin-top: 16px;
+  }
+  .persona {
+    padding: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: white;
+  }
+  .persona h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 4px;
+  }
+  .persona .meta {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .persona p { font-size: 16px; line-height: 1.55; margin: 0; }
+
+  /* Approach flow blocks */
+  .flow-block {
+    border-top: 1px solid var(--rule);
+    padding: 48px 0;
+  }
+  .flow-block:last-of-type { border-bottom: 1px solid var(--rule); }
+  .flow-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 16px;
+  }
+  .flow-block h3 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 16px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .flow-block p { font-size: 18px; margin: 0; max-width: 640px; }
+
+  /* Prototype CTA */
+  .prototype-cta {
+    margin: 64px 0 8px;
+    text-align: center;
+  }
+  .prototype-cta a {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--coral);
+    text-decoration: none;
+    border-bottom: 2px solid var(--coral);
+    padding-bottom: 4px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .prototype-cta a:hover { color: var(--navy); border-color: var(--navy); }
+
+  /* Callout */
+  .callout {
+    background: var(--navy);
+    color: var(--bg);
+    padding: 80px 0;
+    margin: 40px 0;
+  }
+  .callout h2 { color: white; margin-bottom: 24px; }
+  .callout p {
+    color: rgba(255,255,255,0.86);
+    font-size: 18px;
+    max-width: 660px;
+  }
+
+  /* How it was built — phases */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 48px;
+    margin-top: 24px;
+  }
+  .phase .num {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .phase h3 {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 14px;
+  }
+  .phase p { font-size: 16px; line-height: 1.55; margin: 0; }
+
+  /* KPI grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    margin-top: 24px;
+  }
+  .kpi {
+    padding: 32px;
+    border-radius: 4px;
+    background: var(--bg-alt);
+    border-top: 4px solid var(--coral);
+  }
+  .kpi h3 {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 16px;
+    line-height: 1.25;
+  }
+  .kpi .target {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+  }
+  .kpi p { font-size: 15px; line-height: 1.55; margin: 0; color: var(--ink-soft); }
+
+  /* What I learned */
+  .learned p { font-size: 19px; margin-bottom: 28px; }
+
+  /* Closing */
+  .closing {
+    padding: 140px 0;
+    text-align: center;
+  }
+  .closing h2 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 58px);
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .closing .caption {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 28px 60px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  footer a {
+    color: var(--coral);
+    text-decoration: none;
+    border-bottom: 1px solid var(--coral);
+    padding-bottom: 1px;
+  }
+  footer a:hover { color: var(--navy); border-color: var(--navy); }
+
+  /* Mobile tweaks */
+  @media (max-width: 640px) {
+    .hero { padding: 70px 0 50px; }
+    section { padding: 60px 0; }
+    .stats { padding: 60px 0; margin: 50px 0; }
+    blockquote { font-size: 21px; }
+    .callout { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">Case Study</span> &nbsp;·&nbsp; Neue Fische PM Capstone &nbsp;·&nbsp; 2026
+</div>
+
+<!-- ==================================================== -->
+<!-- HERO                                                  -->
+<!-- ==================================================== -->
+<section class="hero container">
+  <h1>60 seconds. Your phone. <em>Verify, don&rsquo;t pay&#8209;and&#8209;hope.</em></h1>
+  <p class="lede">
+    UtilyMe is a mobile-first AI service that audits your annual German utility bill in under 60 seconds &mdash; so you can know whether you&rsquo;ve been overcharged before you pay.
+  </p>
+  <div class="credits">
+    <div><span>Product Manager</span><strong>Susanne Meyer</strong></div>
+    <div><span>Product</span><strong>UtilyMe AI</strong></div>
+    <div><span>Platform</span><strong>Mobile-first web</strong></div>
+    <div><span>Category</span><strong>Tenant tools · Germany</strong></div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- BIG STATS                                             -->
+<!-- ==================================================== -->
+<section class="stats">
+  <div class="wide stats-grid">
+    <div class="stat">
+      <div class="num">50%</div>
+      <div class="label">of German Nebenkostenabrechnungen contain at least one error (Mieterbund estimate)</div>
+    </div>
+    <div class="stat">
+      <div class="num">&euro;300+</div>
+      <div class="label">average annual overpayment per affected household</div>
+    </div>
+    <div class="stat">
+      <div class="num">76%</div>
+      <div class="label">of survey respondents (n=38) had never systematically checked their utility bill</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- CHALLENGE                                             -->
+<!-- ==================================================== -->
+<section class="container">
+  <span class="kicker">The challenge</span>
+  <h2>You suspect the bill is wrong. You don&rsquo;t have a week to find out.</h2>
+  <p>
+    Verifying a Nebenkostenabrechnung in Germany today takes a Mieterbund consultation, an appointment with a lawyer, or hours alone with a spreadsheet and the BetrKV. For most tenants none of those happen. The bill gets paid, the suspicion lingers, the year ends.
+  </p>
+  <p>
+    Research conducted in early 2026 &mdash; three qualitative interviews in Berlin and a survey of 38 German renters &mdash; made the gap visible. Tenants are engaged and informed; they suspect something is off. But the cost of verifying is so high that paying-and-hoping is the rational choice.
+  </p>
+
+  <blockquote>&ldquo;I always feel like something is off, but I have neither the time nor the legal knowledge to actually check.&rdquo;</blockquote>
+  <cite>Anna, 32 &middot; Marketing manager, Berlin &middot; Interview 2, 2026</cite>
+</section>
+
+<!-- ==================================================== -->
+<!-- PERSONAS                                              -->
+<!-- ==================================================== -->
+<section class="container">
+  <span class="kicker">Who we designed for</span>
+  <h2>Three people. One shared friction.</h2>
+  <div class="persona-grid">
+    <div class="persona">
+      <h3>Anna</h3>
+      <span class="meta">Marketing manager &middot; 32 &middot; Berlin</span>
+      <p>Native German speaker, mobile-first, time-poor. Suspects her bill is wrong but won&rsquo;t take a half-day off to visit Mieterbund. Lives on her phone &mdash; the audit has to happen on a 15-minute U-Bahn ride or it does not happen at all.</p>
+    </div>
+    <div class="persona">
+      <h3>Markus</h3>
+      <span class="meta">IT consultant &middot; 58 &middot; Hannover</span>
+      <p>Long-term tenant, Mieterbund member, methodical. Wants the calculation, not just the verdict. Will use his phone but expects desktop-quality detail. Tests UtilyMe against his own spreadsheet.</p>
+    </div>
+    <div class="persona">
+      <h3>Priya</h3>
+      <span class="meta">Software engineer &middot; 28 &middot; Munich</span>
+      <p>Expat, English working language. Loses confidence the moment a document is in German legalese. Needs UtilyMe to bridge the language gap, not just the legal one. Will recommend it to her entire expat network if it earns her trust once.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- APPROACH                                              -->
+<!-- ==================================================== -->
+<section class="container">
+  <span class="kicker">The approach</span>
+  <h2>Separate the expertise from the urgency.</h2>
+  <p>
+    The expertise &mdash; BetrKV interpretation, mathematical apportionment, error-pattern recognition &mdash; lives in the system. The user supplies one thing: their bill. Everything else happens in under ninety seconds.
+  </p>
+
+  <div class="flow-block">
+    <span class="flow-label">Upload &middot; the first 30 seconds</span>
+    <h3>The first thirty seconds belong to the user.</h3>
+    <p>Anna takes a photo of her bill or uploads a PDF. The interface asks for nothing else. No account, no email, no questions about her landlord. The friction has to be near zero or the tab closes.</p>
+  </div>
+
+  <div class="flow-block">
+    <span class="flow-label">Audit &middot; the hybrid stack</span>
+    <h3>An LLM extracts. Deterministic math audits.</h3>
+    <p>A language model parses the document and pulls out the structured data &mdash; square metres, apportionment keys, individual line items, prior payments. A separate deterministic engine &mdash; not the LLM &mdash; runs the arithmetic. The LLM is the parser; the math is the auditor. This split is the trust architecture, and it is the most important architectural decision in the project.</p>
+  </div>
+
+  <div class="flow-block">
+    <span class="flow-label">Verdict &middot; the trust artefact</span>
+    <h3>The math IS the trust artefact.</h3>
+    <p>The verdict is never &ldquo;trust me, this looks wrong.&rdquo; It is &ldquo;here is what your bill says, here is what the math returns, and here is the line that does not reconcile.&rdquo; Every figure is auditable. Every figure links to the source paragraph in the BetrKV. Users are encouraged to open the calculation detail view &mdash; we measure that.</p>
+  </div>
+
+  <div class="prototype-cta">
+    <a href="https://sketch-spark-weave.lovable.app/" target="_blank" rel="noopener">Try the prototype &rarr;</a>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- TRUST CALLOUT                                         -->
+<!-- ==================================================== -->
+<section class="callout">
+  <div class="container">
+    <span class="kicker" style="color: rgba(255,255,255,0.7);">The non-negotiable</span>
+    <h2>UtilyMe is a tool, not a lawyer.</h2>
+    <p>
+      Every verdict carries a BetrKV disclaimer reviewed by external counsel. The product helps a tenant decide whether to investigate further &mdash; it does not replace Mieterbund consultation, and it does not generate legal advice. This positioning is embedded in the Definition of Done, the Go/No-Go gates, and every line of public copy. It is not a process step. It is a product value.
+    </p>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- HOW IT WAS BUILT                                      -->
+<!-- ==================================================== -->
+<section class="wide">
+  <div class="container">
+    <span class="kicker">How it was built</span>
+    <h2>From a problem statement to a launch-ready plan in 14 weeks.</h2>
+  </div>
+  <div class="container">
+    <div class="phases">
+      <div class="phase">
+        <div class="num">01</div>
+        <h3>Discover</h3>
+        <p>Three qualitative interviews, a 38-person survey, competitive analysis (Mieterbund, lawyers, DIY). Eight hypotheses written before the data was looked at. Every later scope decision traces back to this evidence.</p>
+      </div>
+      <div class="phase">
+        <div class="num">02</div>
+        <h3>Define</h3>
+        <p>Three personas, full user journey, user flow, 8 epics and 26 user stories with Given/When/Then acceptance criteria, Scrum framework with DoR/DoD, story-point estimation, lean PRD, RICE prioritisation, Now-Next-Later roadmap (iterated through three versions).</p>
+      </div>
+      <div class="phase">
+        <div class="num">03</div>
+        <h3>Design, specify, ship-ready</h3>
+        <p>Lovable prototype iterated through three rounds of usability testing, five KPIs with full specification (formulas, owners, cadence), Performance &amp; Experimentation Framework, twelve-week release plan with Go/No-Go gates, and a ninety-day post-launch plan. Twenty-eight deliverables in total.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- KPIs                                                  -->
+<!-- ==================================================== -->
+<section class="wide">
+  <div class="container">
+    <span class="kicker">Measuring what matters</span>
+    <h2>Five KPIs. Each one tied to a moment that matters.</h2>
+  </div>
+  <div class="wide">
+    <div class="kpi-grid">
+      <div class="kpi">
+        <h3>Audit Completion Rate</h3>
+        <div class="target">&ge; 60%</div>
+        <p>If users start an upload and abandon before the verdict, the entire trust thesis breaks. This is the headline KPI of O1 &mdash; verify, not pay&#8209;and&#8209;hope.</p>
+      </div>
+      <div class="kpi">
+        <h3>Median Time to Verdict</h3>
+        <div class="target">&lt; 90s</div>
+        <p>The product promise is &ldquo;in sixty seconds, on your phone.&rdquo; Every second above 90 is a second Anna&rsquo;s attention is somewhere else.</p>
+      </div>
+      <div class="kpi">
+        <h3>Trust Channel Acquisition</h3>
+        <div class="target">&ge; 40%</div>
+        <p>Mieterbund + Verbraucherzentrale + Stiftung Warentest. Trust is the moat, and it has to come through trusted channels first.</p>
+      </div>
+      <div class="kpi">
+        <h3>Calculation Detail Open Rate</h3>
+        <div class="target">&ge; 70%</div>
+        <p>If users do not open the math, they are not really trusting the verdict. This is the leading indicator that the trust artefact is working.</p>
+      </div>
+      <div class="kpi">
+        <h3>Post-Audit Trust Score</h3>
+        <div class="target">&ge; 4.0/5</div>
+        <p>The lagging indicator. Users tell us directly whether they would act on the result. Floor: 3.5. Below that, the strategy is at risk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- WHAT I LEARNED                                        -->
+<!-- ==================================================== -->
+<section class="container learned">
+  <span class="kicker">What I learned</span>
+  <h2>Trust is built by what you choose <em>not</em> to do.</h2>
+  <p>
+    The hardest decisions in the project were what to leave out. The team had clear capacity for a dispute-letter generator, a recurring annual reminder, a paid premium tier. Each one tested well in concept. Each one was deferred. Trust at MVP comes from doing one thing &mdash; the audit &mdash; exceptionally well, transparently, in sixty seconds.
+  </p>
+  <p>
+    The math is not a feature. It is the product. The single most important decision in the architecture was splitting the LLM and the deterministic arithmetic. The LLM extracts; the math audits. Users can verify every number against their own bill. That separation makes the verdict defensible, and a defensible verdict is the only verdict worth shipping in this category.
+  </p>
+  <p>
+    User research is not a discovery activity. It is the spine. Every prioritisation conversation came back to what Anna, Markus and Priya told us. Without their interviews, the team would have built a thorough product. With them, it built a useful one.
+  </p>
+</section>
+
+<!-- ==================================================== -->
+<!-- CLOSING                                               -->
+<!-- ==================================================== -->
+<section class="closing container">
+  <h2>&ldquo;You suspected. Now you know.&rdquo;</h2>
+  <div class="caption">UtilyMe &middot; the line on the verdict screen</div>
+</section>
+
+<!-- ==================================================== -->
+<!-- FOOTER                                                -->
+<!-- ==================================================== -->
+<footer>
+  UtilyMe &middot; PM Capstone &middot; Susanne Meyer &middot; June 2026 &middot; Neue Fische Product Management Program<br>
+  <a href="https://sketch-spark-weave.lovable.app/" target="_blank" rel="noopener">Live prototype</a>
+</footer>
+
+</body>
+</html>
