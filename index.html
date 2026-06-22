@@ -64,7 +64,7 @@
   /* Personas */
   .persona-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px; margin-top:8px;}
   .persona{padding:0;}
-  .persona .avatar{width:120px; height:120px; margin-bottom:20px;}
+  .persona .avatar{width:140px; height:180px; margin-bottom:20px; border-radius:12px; object-fit:cover; box-shadow:0 4px 12px rgba(31,58,95,0.12);}
   .persona h3{font-family:var(--serif); font-size:26px; font-weight:700; color:var(--navy); margin:0 0 4px;}
   .persona .meta{font-size:12px; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; display:block; margin-bottom:14px;}
   .persona p{font-size:15px; line-height:1.55; margin:0;}
@@ -232,7 +232,7 @@
 </section>
 
 <!-- ============================ CHALLENGE ============================ -->
-<section class="container">
+<section class="container"style="padding-top:140px;">
   <div class="split">
     <div>
       <span class="kicker">Problem and Challenges</span>
@@ -288,51 +288,24 @@
 </section>
 
 <!-- ============================ PERSONAS ============================ -->
-<section class="container">
+<section class="container"style="padding-top:140px;">
   <span class="kicker">Who we designed for</span>
   <h2>Three people. One shared friction.</h2>
   <div class="persona-grid">
     <div class="persona">
-      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Anna avatar">
-        <circle cx="60" cy="60" r="60" fill="#FECACA"/>
-        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
-        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
-        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <!-- phone in hand hint -->
-        <rect x="84" y="76" width="14" height="22" rx="3" fill="#1F3A5F"/>
-      </svg>
+      <img class="avatar" src="Anna_klein.png" alt="Anna — Berlin marketing manager">
       <h3>Anna</h3>
       <span class="meta">32 &middot; Berlin &middot; Marketing</span>
       <p>Mobile-first, time-poor. Audits her bill on the U-Bahn or not at all.</p>
     </div>
     <div class="persona">
-      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Markus avatar">
-        <circle cx="60" cy="60" r="60" fill="#FEF3C7"/>
-        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
-        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
-        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <!-- glasses -->
-        <circle cx="52" cy="50" r="5" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <circle cx="68" cy="50" r="5" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <line x1="57" y1="50" x2="63" y2="50" stroke="#1F3A5F" stroke-width="2"/>
-      </svg>
+     <img class="avatar" src="Markus_klein.jpg" alt="Markus — Hannover IT support">
       <h3>Markus</h3>
-      <span class="meta">58 &middot; Hannover &middot; IT consultant</span>
+      <span class="meta">58 &middot; Hannover &middot; IT support</span>
       <p>Methodical. Wants the calculation, not just the verdict. Will check the math.</p>
     </div>
     <div class="persona">
-      <svg class="avatar" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Priya avatar">
-        <circle cx="60" cy="60" r="60" fill="#D1FAE5"/>
-        <circle cx="60" cy="48" r="22" fill="#FFFFFF"/>
-        <path d="M22 110 q38 -30 76 0 z" fill="#FFFFFF"/>
-        <circle cx="60" cy="48" r="22" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <path d="M22 110 q38 -30 76 0" fill="none" stroke="#1F3A5F" stroke-width="2"/>
-        <!-- earrings -->
-        <circle cx="40" cy="56" r="2" fill="#F96167"/>
-        <circle cx="80" cy="56" r="2" fill="#F96167"/>
-      </svg>
+      <img class="avatar" src="Priya_klein.jpg" alt="Priya — Munich software engineer">
       <h3>Priya</h3>
       <span class="meta">28 &middot; Munich &middot; Engineer</span>
       <p>Expat. English working language. Needs UtilyMe to bridge the German legalese.</p>
@@ -341,7 +314,7 @@
 </section>
 
 <!-- ============================ APPROACH ============================ -->
-<section class="wide">
+<section class="wide"style="padding-top:140px;">
   <div class="container">
     <span class="kicker">Solution</span>
     <h2>Three steps. Ninety seconds.</h2>
@@ -427,17 +400,8 @@
   </div>
 </section>
 
-<!-- ============================ TRUST CALLOUT ============================ -->
-<section class="callout">
-  <div class="container">
-    <span class="kicker" style="color:rgba(255,255,255,0.7);">The non-negotiable</span>
-    <h2>UtilyMe is a tool, not a lawyer.</h2>
-    <p>Every verdict carries a BetrKV disclaimer reviewed by external counsel. The product helps a tenant decide whether to investigate further &mdash; it does not replace Mieterbund. This is embedded in the Definition of Done, the Go/No-Go gates, and every line of public copy.</p>
-  </div>
-</section>
-
 <!-- ============================ HOW IT WAS BUILT ============================ -->
-<section class="container">
+<section class="container"style="padding-top:140px;">
   <span class="kicker">How it was built</span>
   <h2>Problem statement to launch-ready in 14 weeks.</h2>
   <div class="phases">
@@ -501,13 +465,13 @@
   </div>
 </section>
 
-<!-- ============================ WHAT I LEARNED ============================ -->
-<section class="container learned">
+<!-- ============================ WHAT WE LEARNED ============================ -->
+<section class="container learned" style="padding-top:140px;">
   <span class="kicker">What We Learned</span>
-  <h2>Trust is built by what you choose <em>not</em> to do.</h2>
-  <p>The hardest decisions were what to leave out. A dispute-letter generator, a recurring reminder, a premium tier &mdash; each tested well, each was deferred. Trust at MVP comes from doing one thing well.</p>
-  <p>Splitting the LLM and the deterministic math was the single most important architectural call. The LLM extracts; the math audits. A defensible verdict is the only verdict worth shipping.</p>
-  <p>User research is the spine, not the discovery activity. Every prioritisation conversation came back to what Anna, Markus and Priya said.</p>
+  <h2>The product taught us more than the plan did.</h2>
+  <p>Three rounds of usability tests confirmed what we'd only hypothesised: users open the calculation detail view <em>more</em> when they see a number they disagree with, not less. The math IS the trust artefact &mdash; not a feature we hoped would work, but observable behaviour. Tier-1 fixes that followed (clearer "free" CTAs, mobile spacing, German legal copy) were small in scope but measurably moved completion rate in retest.</p>
+  <p>A late-stage strategic critique reshaped the monetisation model. The original plan paywalled the dispute letter at &euro;9. A tester observed &mdash; correctly &mdash; that ChatGPT can draft one in thirty seconds. Defensible monetisation has to live behind something AI substitution cannot replicate. The pricing strategy is now an open question, not a closed answer.</p>
+  <p>Mid-build, the main competitor Mineko launched a free AI "Sofortcheck." Direct testing showed it is a statistical estimate, not an audit &mdash; and their paywall sits at the actionable exlplanatory report, not the verdict. Our differentiation moves from "faster than Mineko" to "deeper for free than Mineko" &mdash; show the math, ship the landlord email, paywall only what AI cannot credibly replicate.</p>
 </section>
 
 <!-- ============================ CLOSING ============================ -->
